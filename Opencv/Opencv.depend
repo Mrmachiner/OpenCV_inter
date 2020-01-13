@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1577954266 source:/home/minhhoang/Desktop/MinhHoang/Code/Opencv/main.cpp
+	<opencv2/core/core.hpp>
+	<opencv2/imgproc/imgproc.hpp>
+	<opencv2/highgui/highgui.hpp>
+	<iostream>
+
