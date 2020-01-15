@@ -80,23 +80,29 @@ int main(int argc, char *argv[])
 {
     ////home//minhhoang//Downloads//4.jpg
     ////home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_test/original.jpg
-    cv::Mat img = cv::imread("//home//minhhoang//Downloads//4.jpg", CV_LOAD_IMAGE_COLOR);
+    cv::Mat img = cv::imread("//home//minhhoang//Downloads//4.jpg");
     cv::imshow("Original",img);
     cv::Mat img_clone = img.clone();
+    cv::cvtColor(img_clone,img_clone,cv::COLOR_BGR2GRAY);
+    cv::imshow("Gray",img_clone);
+    
     //Show_Image_Blur(img_clone);
     //Show_Image_Filter(img_clone);
     //UpContrast pixel*alpha+beta
     //Mat mask = UpContrast(img_clone,1.3,0);
     cv::Mat blurred;
-    double sigma = 1, threshold = 5, amount = 3;
-    cv::GaussianBlur(img_clone, blurred, cv::Size(), sigma, sigma);
+    double sigma = 1, threshold = 5, amount = 2;
+    cv::GaussianBlur(img_clone, blurred, cv::Size(3,3), sigma, sigma);
     cv::imshow("GaussianBlur",blurred);
 
-    cv::Mat lowContrastMask = abs(img_clone - blurred) < threshold;
+    cv::Mat lowContrastMask = abs(img_clone - blurred);
     cv::imshow("lowContrastMask",lowContrastMask);
 
     cv::Mat sharpened = img_clone*(1+amount) + blurred*(-amount);
     cv::imshow("sharpened",sharpened);
+    
+    cv::Mat sharpen_2 = img_clone + (img_clone - blurred) * amount;
+    cv::imshow("sharpen_2",sharpen_2);
 
     img_clone.copyTo(sharpened, lowContrastMask);
     cv::imshow("img_clone",img_clone);

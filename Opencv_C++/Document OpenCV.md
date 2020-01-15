@@ -3,9 +3,9 @@
 ### 1: Blur (Low-Pass Filtering)
 [LPF](https://diffractionlimited.com/help/maximdl/MaxIm-DL.htm#High-Pass_Filtering.htm)\
 [Blur](https://docs.opencv.org/4.1.2/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37)
-* Kernel với mỗi phần từ có giá trị bằng 1,kích thước kernel do mình chỉ định sau đó tính trung bình các pixel trong kernel.
+* Kernel với mỗi phần từ có giá trị bằng 1, kích thước kernel do mình chỉ định sau đó tính trung bình các pixel trong kernel.
 * Hình ảnh minh họa \
-![img](/home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_docs/Blur_kernel.png).
+![img](img_docs/Blur_kernel.png).
 ### 2: MedianBlur
 [MedianBlur](https://docs.opencv.org/4.1.2/d4/d86/group__imgproc__filter.html#ga8c45db9afe636703801b0b2e440fce37)
 * Kernel với sẽ chuyển về mảng 1 chiều đã được sắp xếp pixel trung tâm sẽ được thay bằng trung vị của mảng.
@@ -14,7 +14,7 @@
 [Gaussian Smoothing](https://homepages.inf.ed.ac.uk/rbf/HIPR2/gsmooth.htm)
 * Kernel sau khi tính toán theo hàm Gauss sẽ có dạng ma trận mà tâm của ma trận sẽ lớn nhất và nhỏ dần khi mở rộng ra ngoài biên.
 * Hình ảnh minh họa \
-![img](/home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_docs/Gau_kernel.png).
+![img](img_docs/Gau_kernel.png).
 ### 4: BilateralFilter
 [BilateralFilter](https://docs.opencv.org/3.4.3/d4/d86/group__imgproc__filter.html#ga9d7064d478c95d60003cf839430737ed)
 * Loại bỏ nhiễu nhưng vẫn giữ được biên. BilateralFilter cũng sử dụng bộ lọc Gauss nhưng có thêm một bước là nó chỉ xét nhưng điểm có mức xám tương đồng với pixel trung tâm để làm mịn do nhưng điểm ảnh ở biên có sự thay đổi mức xám rất rõ ràng.
@@ -30,8 +30,17 @@
 ### 6: BoxFilter
 * Giống với Blur boxFilter cũng dùng Mat::ones/(ksizeWidth*KsizeHeight) nhưng boxfilter có thêm tham số độ sâu của ảnh và nếu normalize = False thì kernel sẽ là chỉ là Mat::ones.
 * Link [BoxFilter](https://docs.opencv.org/4.1.2/d4/d86/group__imgproc__filter.html#gad533230ebf2d42509547d514f7d3fbc3)
+### 7: Motion blur
+* link [MotionBlur](https://subscription.packtpub.com/book/application_development/9781785283932/2/ch02lvl1sec21/motion-blur)
+* Motion Blur sẽ làm nhòe ảnh trông vật thể như đang di chuyển khi được chụp
+* Kernel sẽ là ma trận full 0 và giá trị hàng thứ kernel_size/2 = 1/kernel_size (thường kernel_size = 15)
+* VD: Kernel_size = 5  
+* ![img](img_docs/Motion_Kernel_size.png)
 ## II: Sharpen
 ### 1: High-Pass Filtering
 * link [HPF](http://opencv-tutorials-hub.blogspot.com/2016/02/opencv-code-for-high-pass-filter.html)
 * Sử dụng bộ lọc với nhân là dương và các phần tử xung quanh là âm.
-* ![img](/home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_docs/Kernel_HPF.png)
+* ![img](img_docs/Kernel_HPF.png)
+### 2: Unsharp Filter
+* link [Unsharp](https://homepages.inf.ed.ac.uk/rbf/HIPR2/unsharp.htm)
+* Sử dụng mask bị làm mờ rồi lấy ảnh gốc trừ đi.

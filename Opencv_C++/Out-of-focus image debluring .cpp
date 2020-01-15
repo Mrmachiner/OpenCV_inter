@@ -22,12 +22,12 @@ const String keys =
 
 int main(int argc, char *argv[])
 {
-    int R = 12;
+    int R = 53;
     int snr = 5200;
     Mat imgIn;
-    imgIn = imread("/home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_test/original.jpg", IMREAD_GRAYSCALE);
+    imgIn = imread("/home/minhhoang/Desktop/MinhHoang/Code/Opencv_C++/img_test/original.jpg", IMREAD_GRAYSCALE);
     Mat imgOut;
-
+    imshow("cimgIn", imgIn);
 //! [main]
     // it needs to process even image only
 
@@ -36,20 +36,20 @@ int main(int argc, char *argv[])
     //Hw calculation (start)
     Mat Hw, h;
     calcPSF(h, roi.size(), R);
-    imshow("calcPSF.jpg", h);
+    //imshow("calcPSF.jpg", h);
     calcWnrFilter(h, Hw, 1.0 / double(snr));
-    imshow("calcWnrFilter.jpg", Hw);
+    //imshow("calcWnrFilter.jpg", Hw);
     //Hw calculation (stop)
 
     // filtering (start)
     filter2DFreq(imgIn(roi), imgOut, Hw);
-    imshow("filter2DFreq.jpg", imgOut);
+    //imshow("filter2DFreq.jpg", imgOut);
     // filtering (stop)
 //! [main]
-    imshow("result.jpg", imgOut);
+    //imshow("result.jpg", imgOut);
     imgOut.convertTo(imgOut, CV_8U);
-    imgOut.copyTo(imgIn);
-    imshow("imgin",imgIn);
+    //imgOut.copyTo(imgIn);
+    //imshow("imgin",imgIn);
     normalize(imgOut, imgOut, 0, 255, NORM_MINMAX);
     imshow("result.jpg", imgOut);
     waitKey();
