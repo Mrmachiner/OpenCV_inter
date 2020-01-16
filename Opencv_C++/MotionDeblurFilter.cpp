@@ -19,12 +19,13 @@ const String keys =
 ;
 int main(int argc, char *argv[])
 {
-    int LEN = 125;
-    double THETA = 0;
-    int snr = 700;
-    string strInFileName = "/home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_test/motion_original.jpg";
+    int LEN = 78; //125
+    double THETA = 15; //0
+    int snr = 300; //700
+    string strInFileName = "/home/minhhoang/Desktop/MinhHoang/Code/Opencv_C++/img_test/whitecar.png";
     Mat imgIn;
     imgIn = imread(strInFileName, IMREAD_GRAYSCALE);
+    imshow("IMGIN",imgIn);
     Mat imgOut;
     // it needs to process even image only
     Rect roi = Rect(0, 0, imgIn.cols & -2, imgIn.rows & -2);

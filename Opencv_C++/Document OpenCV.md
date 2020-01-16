@@ -44,3 +44,28 @@
 ### 2: Unsharp Filter
 * link [Unsharp](https://homepages.inf.ed.ac.uk/rbf/HIPR2/unsharp.htm)
 * Sử dụng mask bị làm mờ rồi lấy ảnh gốc trừ đi.
+## III: Contrast
+### 1: The Contrast and Brightness of an image
+* link [Contrast & Brightness](https://docs.opencv.org/3.4/d3/dc1/tutorial_basic_linear_transform.html)
+* Để tăng ngưỡng sáng của ảnh lên ta sử dụng công thức:
+```
+    g(i,j) = α.f(i,j) + β 
+```
+* The parameters α>0 and β are often called the gain and bias parameters
+### 2: Histogram Equalization (HE)
+* link [HE](https://www.opencv-srf.com/2018/02/histogram-equalization.html)
+* Ý tưởng của HE sẽ là xếp các giá trị pixcel thành các cột và san đều chúng ra bằng nhau.
+* EX ![img](img_docs/ex_HE.png)
+### 3: Two-dimensional histogram equalization
+* link []
+* Ý tưởng 
+* Ex
+## IV Image Deblurring
+### 1: Out-of-focus Deblur Filter
+* Mathematical model of the image degradation in frequency domain representation:
+```
+    S = H . U + N
+```
+* S is a spectrum of blurred image, U is a spectrum of original true image
+* H  is a frequency response of point spread function (PSF)
+* N is a spectrum of additive noise
