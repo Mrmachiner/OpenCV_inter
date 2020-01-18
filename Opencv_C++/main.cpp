@@ -1,7 +1,6 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
-#include <opencv2/dnn/dnn.hpp>
 #include <iostream>
 cv::Mat UpContrast(cv::Mat img,double alpha, int beta){
     cv::Mat mask = cv::Mat::zeros(img.size(),img.type());
@@ -80,7 +79,7 @@ int main(int argc, char *argv[])
 {
     ////home//minhhoang//Downloads//4.jpg
     ////home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_test/original.jpg
-    cv::Mat img = cv::imread("//home//minhhoang//Downloads//4.jpg");
+    cv::Mat img = cv::imread("./img_test/4.jpg");
     cv::imshow("Original",img);
     cv::Mat img_clone = img.clone();
     cv::cvtColor(img_clone,img_clone,cv::COLOR_BGR2GRAY);

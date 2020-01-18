@@ -62,6 +62,7 @@
 * Ex
 ## IV Image Deblurring
 ### 1: Out-of-focus Deblur Filter
+* link [OoF Deblur](https://docs.opencv.org/master/de/d3c/tutorial_out_of_focus_deblur_filter.html)
 * Mathematical model of the image degradation in frequency domain representation:
 ```
     S = H . U + N

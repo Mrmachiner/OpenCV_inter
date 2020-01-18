@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Opencv/binary",
+            "program": "${workspaceFolder}/Opencv_C++/binary",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

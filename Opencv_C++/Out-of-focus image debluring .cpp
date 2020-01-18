@@ -1,9 +1,8 @@
-#include <opencv2/core/core.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/dnn/dnn.hpp>
+#include <opencv4/opencv2/core/core.hpp>
+#include <opencv4/opencv2/imgproc/imgproc.hpp>
+#include <opencv4/opencv2/highgui/highgui.hpp>
+#include <opencv4/opencv2/highgui.hpp>
 #include <iostream>
-
 
 void help();
 void calcPSF(cv::Mat& outputImg, cv::Size filterSize, int R);
@@ -23,11 +22,15 @@ int main(int argc, char *argv[])
     int R = 53;
     int snr = 5200;
     cv::Mat imgIn;
-    imgIn = cv::imread("/home/minhhoang/Desktop/MinhHoang/Code/Opencv_C++/img_test/Original_real.jpeg", cv::IMREAD_GRAYSCALE);
+    imgIn = cv::imread("/home/minhhoang/Code C++/OpenCV_inter/Opencv_C++/img_test/Original_real.jpeg", cv::IMREAD_GRAYSCALE);
     cv::Mat imgOut;
-    namedWindow("cimgIn",cv::WINDOW_NORMAL);
-    resizeWindow("cimgIn",cv::Size(2400,1600));
-    cv::imshow("cimgIn", imgIn);
+    // namedWindow("cimgIn",cv::WINDOW_NORMAL);
+    //
+   //resizeWindow("cimIgn",Size(1200),800));
+    // resizeWindow("cimgIn",cv::Size(2400,1600));
+    cv::namedWindow("cimIgn",cv::WINDOW_NORMAL);
+    cv::resizeWindow("cimIgn",cv::Size(1200,800));
+    cv::imshow("cimIgn", imgIn);
 //! [main]
     // it needs to process even image only
 
@@ -51,7 +54,7 @@ int main(int argc, char *argv[])
     //imshow("imgin",imgIn);
     normalize(imgOut, imgOut, 0, 255, cv::NORM_MINMAX);
     cv::namedWindow("result.jpg",cv::WINDOW_NORMAL);
-    cv::resizeWindow("result.jpg",cv::Size(2400,1600));
+    cv::resizeWindow("result.jpg",cv::Size(1200,800));
     imshow("result.jpg", imgOut);
     cv::waitKey();
     return 0;
