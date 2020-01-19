@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-img_emboss_input = cv2.imread('/home/minhhoang/Downloads/4.jpg')
+img_emboss_input = cv2.imread('/home/minhhoang/Code C++/OpenCV_inter/Opencv_C++/img_test/4.jpg')
 # generating the kernels
 kernel_emboss_1 = np.array([[0,-1,-1],[1,0,-1],
 [1,1,0]])
@@ -22,8 +22,8 @@ output_3 = cv2.filter2D(gray_img, -1, kernel_emboss_3) + 128
 output_4 = output_1+output_2
 cv2.imshow('Input', img_emboss_input)
 
-cv2.cvtColor(output_4,output_4,cv2.COLOR_BGR2GRAY)
-cv2.imshow('output_4', output_4)
+#cv2.cvtColor(output_4,output_4,cv2.COLOR_BGR2GRAY)
+#cv2.imshow('output_4', output_4)
 cv2.imshow('Embossing - South West', output_1)
 cv2.imshow('Embossing - South East', output_2)
 cv2.imshow('Embossing - North West', output_3)

@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
-img = cv2.imread('//home//minhhoang//Downloads//4.jpg')
+img = cv2.imread('/home/minhhoang/Code C++/OpenCV_inter/Opencv_C++/img_test/4.jpg')
 cv2.imshow('Original', img)
-size = 5
+size = 17
 # generating the kernel
 kernel_motion_blur = np.zeros((size, size))
 # print("zeros",kernel_motion_blur)

@@ -1,6 +1,6 @@
-#include <opencv2/core/core.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
+#include <opencv4/opencv2/core/core.hpp>
+#include <opencv4/opencv2/imgproc/imgproc.hpp>
+#include <opencv4/opencv2/highgui/highgui.hpp>
 #include <iostream>
 cv::Mat UpContrast(cv::Mat img,double alpha, int beta){
     cv::Mat mask = cv::Mat::zeros(img.size(),img.type());
@@ -59,7 +59,7 @@ void Show_Image_Filter(cv::Mat source){
     // imshow("boxFiltertrue",img_boxFilter);
 
     cv::boxFilter(img_gray,img_boxFilter,source.depth(),cv::Size(5,5),cv::Point(-1,-1),true);
-    cv::imshow("boxFiltertrue-1-1",img_boxFilter);
+    cv::imshow("boxFilter",img_boxFilter);
 
     //boxFilter(img_gray,img_boxFilter,source.depth(),Size(5,5),Point(-1,-1),false);
     //imshow("boxFilterfalse",img_boxFilter);
@@ -75,20 +75,43 @@ void Show_Image_Filter(cv::Mat source){
     cv::filter2D(img_gray,img_filter,img_gray.depth(),kernel,cv::Point(-1,-1));
     cv::imshow("filter2D",img_filter);
 }
-int main(int argc, char *argv[])
+cv::Mat High_Pass_Filter(cv::Mat original){
+    int Kernel_size=3;
+    cv::Mat HPF;
+    float array[3][3]={{0,-1,0},{-1,4,-1},{0,-1,0}};
+
+    float array2[3][3]={{-1,-2,-1},{-2,12,-2},{-1,-2,-1}};
+
+    cv::Mat kernel(Kernel_size,Kernel_size,CV_32F,array2);
+    cv::filter2D(original,HPF,original.depth(),kernel,cv::Point(-1,-1));
+    cv::imshow("HPF",HPF);
+    return HPF;
+}
+cv::Mat MotionBlur (int Kernel_size,cv::Mat original)
 {
-    ////home//minhhoang//Downloads//4.jpg
-    ////home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_test/original.jpg
-    cv::Mat img = cv::imread("./img_test/4.jpg");
-    cv::imshow("Original",img);
-    cv::Mat img_clone = img.clone();
-    cv::cvtColor(img_clone,img_clone,cv::COLOR_BGR2GRAY);
-    cv::imshow("Gray",img_clone);
-    
-    //Show_Image_Blur(img_clone);
-    //Show_Image_Filter(img_clone);
-    //UpContrast pixel*alpha+beta
-    //Mat mask = UpContrast(img_clone,1.3,0);
+    float kernel_array[Kernel_size][Kernel_size];
+    //float a = (float)(1/(Kernel_size*1.0));
+    for(int i = 0; i < Kernel_size; i++)
+    {
+        for (int j = 0; j < Kernel_size; j++)
+        {
+            if (j == (int)((Kernel_size - 1)/2))
+            {
+                kernel_array[i][j] = (float)(1/(Kernel_size*1.0));
+            }
+            else
+            {
+                kernel_array[i][j] = 0;
+            }
+        }
+    }
+    cv::Mat motionBlur;
+    cv::Mat kernel(Kernel_size,Kernel_size,CV_32F,kernel_array);
+    cv::filter2D(original,motionBlur,original.depth(),kernel,cv::Point(-1,-1));
+    cv::imshow("ModitonBlur",motionBlur);
+    return motionBlur;
+}
+cv::Mat Unsharp(cv::Mat img_clone){
     cv::Mat blurred;
     double sigma = 1, threshold = 5, amount = 2;
     cv::GaussianBlur(img_clone, blurred, cv::Size(3,3), sigma, sigma);
@@ -97,14 +120,42 @@ int main(int argc, char *argv[])
     cv::Mat lowContrastMask = abs(img_clone - blurred);
     cv::imshow("lowContrastMask",lowContrastMask);
 
-    cv::Mat sharpened = img_clone*(1+amount) + blurred*(-amount);
-    cv::imshow("sharpened",sharpened);
+    //cv::Mat sharpened = img_clone*(1+amount) + blurred*(-amount);
+    //cv::imshow("sharpened",sharpened);
     
     cv::Mat sharpen_2 = img_clone + (img_clone - blurred) * amount;
-    cv::imshow("sharpen_2",sharpen_2);
+    cv::imshow("sharpen_22",sharpen_2);
 
-    img_clone.copyTo(sharpened, lowContrastMask);
-    cv::imshow("img_clone",img_clone);
+    img_clone.copyTo(sharpen_2, lowContrastMask);
+    cv::imshow("sharpen_2",sharpen_2);
+    return sharpen_2;
+}
+cv::Mat Historgram_equa(cv::Mat original){
+    cv::cvtColor(original,original,cv::COLOR_BGR2GRAY);
+    cv::Mat dst;
+    cv::equalizeHist( original, dst );
+    cv::imshow("HE",dst);
+    return dst;
+}
+int main(int argc, char *argv[])
+{
+    ////home//minhhoang//Downloads//4.jpg
+    ////home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_test/original.jpg
+    cv::Mat img = cv::imread("/home/minhhoang/Code C++/OpenCV_inter/Opencv_C++/img_test/4.jpg");
+    cv::imshow("Original",img);
+    cv::Mat img_clone = img.clone();
+    cv::Mat mask = UpContrast(img_clone,1.3,0);
+    cv::imshow("MaskContrast",mask);
+    Historgram_equa(img_clone);
+    //MotionBlur(15,img);
+    //High_Pass_Filter(img);
+    //cv::cvtColor(img_clone,img_clone,cv::COLOR_BGR2GRAY);
+    //cv::imshow("Gray",img_clone);
+    //Show_Image_Blur(img_clone);
+    //Show_Image_Filter(img_clone);
+    //UpContrast pixel*alpha+beta
+    //Mat mask = UpContrast(img_clone,1.3,0);
+    //Unsharp(img_clone);
     cv::waitKey(0);
     return 0;
 }

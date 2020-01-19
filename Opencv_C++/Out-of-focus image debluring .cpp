@@ -24,10 +24,6 @@ int main(int argc, char *argv[])
     cv::Mat imgIn;
     imgIn = cv::imread("/home/minhhoang/Code C++/OpenCV_inter/Opencv_C++/img_test/Original_real.jpeg", cv::IMREAD_GRAYSCALE);
     cv::Mat imgOut;
-    // namedWindow("cimgIn",cv::WINDOW_NORMAL);
-    //
-   //resizeWindow("cimIgn",Size(1200),800));
-    // resizeWindow("cimgIn",cv::Size(2400,1600));
     cv::namedWindow("cimIgn",cv::WINDOW_NORMAL);
     cv::resizeWindow("cimIgn",cv::Size(1200,800));
     cv::imshow("cimIgn", imgIn);
@@ -39,7 +35,7 @@ int main(int argc, char *argv[])
     //Hw calculation (start)
     cv::Mat Hw, h;
     calcPSF(h, roi.size(), R);
-    //imshow("calcPSF.jpg", h);
+    cv::imshow("calcPSF.jpg", h);
     calcWnrFilter(h, Hw, 1.0 / double(snr));
     //imshow("calcWnrFilter.jpg", Hw);
     //Hw calculation (stop)
@@ -59,14 +55,6 @@ int main(int argc, char *argv[])
     cv::waitKey();
     return 0;
 }
-
-void help()
-{
-    std::cout << "2018-07-12" << std::endl;
-    std::cout << "DeBlur_v8" << std::endl;
-    std::cout << "You will learn how to recover an out-of-focus image by Wiener filter" << std::endl;
-}
-
 //! [calcPSF]
 void calcPSF(cv::Mat& outputImg, cv::Size filterSize, int R)
 {
