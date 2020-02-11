@@ -1,6 +1,6 @@
-#include <opencv4/opencv2/core/core.hpp>
-#include <opencv4/opencv2/imgproc/imgproc.hpp>
-#include <opencv4/opencv2/highgui/highgui.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 cv::Mat UpContrast(cv::Mat img,double alpha, int beta){
     cv::Mat mask = cv::Mat::zeros(img.size(),img.type());
@@ -141,12 +141,12 @@ int main(int argc, char *argv[])
 {
     ////home//minhhoang//Downloads//4.jpg
     ////home/minhhoang/Desktop/MinhHoang/Code/Opencv/img_test/original.jpg
-    cv::Mat img = cv::imread("/home/minhhoang/Code C++/OpenCV_inter/Opencv_C++/img_test/4.jpg");
+    cv::Mat img = cv::imread("/home/minhhoang/Desktop/MinhHoang/OpenCV_inter/Opencv_C++/img_test/4.jpg");
     cv::imshow("Original",img);
-    cv::Mat img_clone = img.clone();
-    cv::Mat mask = UpContrast(img_clone,1.3,0);
-    cv::imshow("MaskContrast",mask);
-    Historgram_equa(img_clone);
+    // cv::Mat img_clone = img.clone();
+    // cv::Mat mask = UpContrast(img_clone,1.3,0);
+    // cv::imshow("MaskContrast",mask);
+    // Historgram_equa(img_clone);
     //MotionBlur(15,img);
     //High_Pass_Filter(img);
     //cv::cvtColor(img_clone,img_clone,cv::COLOR_BGR2GRAY);

@@ -10,19 +10,12 @@ void fftshift(const Mat& inputImg, Mat& outputImg);
 void filter2DFreq(const Mat& inputImg, Mat& outputImg, const Mat& H);
 void calcWnrFilter(const Mat& input_h_PSF, Mat& output_G, double nsr);
 void edgetaper(const Mat& inputImg, Mat& outputImg, double gamma = 5.0, double beta = 0.2);
-const String keys =
-"{help h usage ? |             | print this message             }"
-"{image          |input.png    | input image name               }"
-"{LEN            |125          | length of a motion             }"
-"{THETA          |0            | angle of a motion in degrees   }"
-"{SNR            |700          | signal to noise ratio          }"
-;
 int main(int argc, char *argv[])
 {
     int LEN = 78; //125
     double THETA = 15; //0
     int snr = 300; //700
-    string strInFileName = "/home/minhhoang/Desktop/MinhHoang/Code/Opencv_C++/img_test/whitecar.png";
+    string strInFileName = "/home/minhhoang/Desktop/MinhHoang/OpenCV_inter/Opencv_C++/img_test/whitecar.png";
     Mat imgIn;
     imgIn = imread(strInFileName, IMREAD_GRAYSCALE);
     imshow("IMGIN",imgIn);
@@ -44,12 +37,6 @@ int main(int argc, char *argv[])
     imshow("result", imgOut);
     waitKey();
     return 0;
-}
-void help()
-{
-    cout << "2018-08-14" << endl;
-    cout << "Motion_deblur_v2" << endl;
-    cout << "You will learn how to recover an image with motion blur distortion using a Wiener filter" << endl;
 }
 void calcPSF(Mat& outputImg, Size filterSize, int len, double theta)
 {

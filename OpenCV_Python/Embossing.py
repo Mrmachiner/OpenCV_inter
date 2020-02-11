@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
-img_emboss_input = cv2.imread('/home/minhhoang/Code C++/OpenCV_inter/Opencv_C++/img_test/4.jpg')
+img_emboss_input = cv2.imread('/home/minhhoang/Desktop/MinhHoang/OpenCV_inter/Motion-out_of_focus_Deblur/img_test/4.jpg')
+cv2.imshow("ac",img_emboss_input)
+cv2.waitKey()
 # generating the kernels
 kernel_emboss_1 = np.array([[0,-1,-1],[1,0,-1],
 [1,1,0]])

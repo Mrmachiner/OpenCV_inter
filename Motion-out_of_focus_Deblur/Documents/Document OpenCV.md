@@ -73,7 +73,7 @@
 * EX ![img](../img_docs/OoF_Image&#32;debluring.png)
 * Mathematical model of the image degradation in frequency domain representation:
 ```
-    S = H . U + N
+    S = H * U + N
 ```
 * S is a spectrum of blurred image, U is a spectrum of original true image
 * H  is a frequency response of point spread function (PSF)
@@ -81,7 +81,7 @@
 * How to restore a blurred image?
 * The restoration formula in frequency domain is:
 ```
-    U′= Hw ⋅ S
+    U′= Hw * S
 ```
 * U′ is the spectrum of estimation of original image  U
 * Hw is the restoration filter, for example, the Wiener filter.

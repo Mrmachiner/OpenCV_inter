@@ -1,11 +1,11 @@
 # Python 2/3 compatibility
 from __future__ import print_function
-
+# https://github.com/Noblis/opencv/blob/master/samples/python/deconvolution.py
 import numpy as np
 import cv2
 
 # local module
-from common import nothing
+
 
 
 def blur_edge(img, d=31):
@@ -41,13 +41,13 @@ if __name__ == '__main__':
     try:
         fn = args[0]
     except:
-        fn = '../data/licenseplate_motion.jpg'
+        fn = 'text_defocus.jpg'
 
     win = 'deconvolution'
 
     img = cv2.imread(fn, 0)
     if img is None:
-        print('Failed to load fn1:', fn1)
+        print('Failed to load fn1:', fn)
         sys.exit(1)
 
     img = np.float32(img)/255.0
