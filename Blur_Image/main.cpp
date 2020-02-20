@@ -67,7 +67,7 @@ void Show_Image_Filter(Mat source){
 }
 int main(int argc, char *argv[])
 {
-    Mat img = imread("//home//minhhoang//Downloads//4.jpg", CV_LOAD_IMAGE_COLOR);
+    Mat img = imread("//home//minhhoang//Downloads//4.jpg");
     imshow("Original",img);
     Mat img_clone = img.clone();
     Show_Image_Blur(img_clone);
