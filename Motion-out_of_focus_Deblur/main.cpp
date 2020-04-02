@@ -2,10 +2,11 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
-cv::Mat UpContrast(cv::Mat img,double alpha, int beta){
+
+cv::Mat UpContrast(cv::Mat img, double alpha, int beta) {
     cv::Mat mask = cv::Mat::zeros(img.size(),img.type());
-    for(int y =0;y<img.rows;y++){
-        for(int x =0;x<img.cols;x++){
+    for(int y=0;y<img.rows;y++){
+        for(int x=0; x<img.cols;x++){
             for(int c =0;c<img.channels();c++){
                 mask.at<cv::Vec3b>(y,x)[c] = cv::saturate_cast<uchar>(alpha*img.at<cv::Vec3b>(y,x)[c]+beta);
             }
