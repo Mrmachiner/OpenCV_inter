@@ -18,41 +18,40 @@ Mat UpContrast(Mat img,double alpha, int beta){
     return mask;
 }
 void Show_Image_Blur(Mat source){
-    Mat dst,img_dilate,img_erode,img_gray,img_medium,img_GauBlur,img_Blur,img_boxFilter;
+    Mat dst,img_dilate,img_erode,img_gray,img_medium,img_GauBlur,img_Blur,img_boxFilter,swapImage;
     cvtColor(source,img_gray,COLOR_BGR2GRAY);
 
-    //convolution kernel 3x3  (1/9) or 5x5 (1/25) or ... average value of its neighbors
-    medianBlur(img_gray,img_medium,5);
-    imshow("medianBlur",img_medium);
+    // //convolution kernel 3x3  (1/9) or 5x5 (1/25) or ... average value of its neighbors
+    // medianBlur(img_gray,img_medium,5);
+    // imshow("medianBlur",img_medium);
 
 
-    //convolution kernel different
-    GaussianBlur(img_gray, img_GauBlur, Size(5, 5), 0);
-    imshow("GaussianBlur", img_GauBlur);
-    //medianBlur(swapImage,swapImage,11);
-    //imshow("medianBlur",swapImage);
+    // //convolution kernel different
+    // GaussianBlur(img_gray, img_GauBlur, Size(5, 5), 0);
+    // imshow("GaussianBlur", img_GauBlur);
+    // //medianBlur(swapImage,swapImage,11);
+    // //imshow("medianBlur",swapImage);
 
-    //using box filter
-    blur(source,img_Blur,Size(5,5),Point(-1,-1));
-    imshow("Blur",img_Blur);
+    // //using box filter
+    // blur(source,img_Blur,Size(5,5),Point(-1,-1));
+    // imshow("Blur",img_Blur);
 
 
 
-    //adaptiveThreshold(swapImage,dst,255,ADAPTIVE_THRESH_MEAN_C,THRESH_BINARY,11,2);
-    //imshow("adaptiveThreshold", dst);
+    adaptiveThreshold(img_gray,dst,255,ADAPTIVE_THRESH_MEAN_C,THRESH_BINARY,11,2);
+    imshow("adaptiveThreshold", dst);
 
-    //Canny(swapImage,swapImage);
-    //Canny(dst,swapImage,50,160);
-    //imshow("Canny", swapImage);
-    //Mat element_dilate = getStructuringElement(MORPH_RECT,Size(3,3),Point(1,1));
+    Canny(dst,swapImage,50,160);
+    imshow("Canny", swapImage);
+    Mat element_dilate = getStructuringElement(MORPH_RECT,Size(3,3),Point(1,1));
 
-    //dilate(dst,img_dilate,element_dilate);
-    //imshow("dilate", img_dilate);
+    dilate(dst,img_dilate,element_dilate);
+    imshow("dilate", img_dilate);
 
-    //Mat element_erode = getStructuringElement(MORPH_ELLIPSE,Size(7,7));
+    Mat element_erode = getStructuringElement(MORPH_ELLIPSE,Size(7,7));
 
-    //erode(dst,img_erode,element_erode);
-    //imshow("erode",img_erode);
+    erode(dst,img_erode,element_erode);
+    imshow("erode",img_erode);
 }
 void Show_Image_Filter(Mat source){
 
@@ -67,7 +66,7 @@ void Show_Image_Filter(Mat source){
 }
 int main(int argc, char *argv[])
 {
-    Mat img = imread("//home//minhhoang//Downloads//4.jpg");
+    Mat img = imread("//home//minhhoang//Downloads//Y159.jpg");
     imshow("Original",img);
     Mat img_clone = img.clone();
     Show_Image_Blur(img_clone);

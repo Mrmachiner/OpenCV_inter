@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "array": "cpp"
-    }
+        "array": "cpp",
+        "chrono": "cpp",
+        "algorithm": "cpp"
+    },
+    "python.pythonPath": "/usr/bin/python"
 }

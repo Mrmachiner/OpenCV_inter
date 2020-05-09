@@ -51,7 +51,7 @@ net = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 cv2.dnn_registerLayer("Crop", CropLayer)
 # load the input image and grab its dimensions
 
-image = cv2.imread('/home/minhhoang/Downloads/4.jpg')
+image = cv2.imread('/home/minhhoang/Desktop/4.jpg')
 image = cv2.resize(image,(480,720))
 #image = cv2.imread(args["image"])
 (H, W) = image.shape[:2]
